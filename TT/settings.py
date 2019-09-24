@@ -1,5 +1,4 @@
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -149,11 +148,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-import configparser
 
-CONFIG = configparser.ConfigParser()
-CONFIG.read("./config/config.ini")
 
+import pymongo
+DB_MONGO = pymongo.MongoClient("mongodb+srv://huitzoo:halo1603@ttarritmias-5bevl.mongodb.net/TTarritmias?retryWrites=true&w=majority")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

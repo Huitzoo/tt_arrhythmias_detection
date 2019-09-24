@@ -23,8 +23,13 @@ Arritmias
                         <div class="row pt-4 pl-5">
                             <div class="row">
                                 <div class="btn-group btn-group-toggle">
-                                    <label class="btn btn-success">Si</label>
-                                    <input type="checkbox" name="ok_result" id="id_ok_result" >
+                                    <div class="form-check">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">Si</label>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -34,7 +39,7 @@ Arritmias
                                     <label class="btn btn-success" for="opinion">
                                         <i class="fa fa-comments" aria-hidden="true"></i>
                                     </label>
-                                    <input type="text" name="comment" id="id_comment" autocomplete="off">
+                                    <textarea class="form-control" id="id_comment" rows="2",colums="3" autocomplete="off"></textarea>  
                                 </div>
                             </div>
                         </div>
@@ -46,13 +51,6 @@ Arritmias
                             </div>
                         </div>
                     </div>    
-                    <div class="row pt-4 pl-5">
-                        <div class="row">
-                            <div class="btn-group btn-group-toggle">
-                                <a href="{% url 'main' %}" class="btn btn-info">Salir</a>
-                            </div>
-                        </div>
-                    </div>
                     
                 </div>
                 <div class="col">
@@ -95,6 +93,15 @@ Arritmias
                         </div>
                         {% endif %}
                     </div>
+
+                    <div class="row pt-4 pl-5">
+                        <div class="row">
+                            <div class="btn-group btn-group-toggle">
+                                <a href="{% url 'main' %}" class="btn btn-info">Salir</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             
             </div>
@@ -132,7 +139,8 @@ Arritmias
         function comments(){
 
             var data = new FormData();
-            data.append('ok_result',$("#id_ok_result").val());
+            
+            data.append('ok_result',$("#customCheck1").prop('checked'));
             data.append('comment',$("#id_comment").val());
 
             $.ajax({
@@ -147,7 +155,7 @@ Arritmias
                     $("#id_score").hide()
                     toastr.success("Gracias por tus comentarios.");
                 },
-        });
+            });
         }
     </script>
 {% endblock scripts %}

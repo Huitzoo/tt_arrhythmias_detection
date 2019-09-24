@@ -11,7 +11,8 @@ import ast
 import requests
 import cv2
 from keras.models import model_from_json
-
+import pymongo
+from django.conf import settings 
 from PIL import Image
 
 
@@ -158,4 +159,19 @@ class ShowData(View):
 
 
 def comments(request):
-    return JsonResponse({"ok":"ok"})
+    mongo = settings.DB_MONGO.arrhytmias.comments
+    
+    content = {
+        "ok":str(request.POST.get("ok_result")),
+        "comment":request.POST.get("comment")
+    }
+
+    mongo.insert_one(content)
+    
+    return JsonResponse({
+            "status_code":200,
+            "headers":{},
+            "payload":{
+                "data":""
+            },
+    })
