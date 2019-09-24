@@ -1,0 +1,25 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+Arritmias
+{% endblock title %}
+
+{% block content %}
+    <div class="card card-padding card-s-padding card-background-transparent ">
+        <div class="card-body">
+            <div class="row card-padding-content">
+                <div class="col-sm">
+                    {% include "includes/arritmia.html" %}
+                </div>
+                <div class="col-sm">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    notification()
+</script>
+{% endblock scripts %}

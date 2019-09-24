@@ -1,0 +1,159 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+Arritmias
+{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/file_input.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="row mt-5 ">
+    <div class="col-12 col-sm-12">
+        <form id="form_data" method="POST" enctype="multipart/form-data">
+            <div class="card  d-flex">
+                <div class="card-header">
+                    Ingresa información <button type="button" class="btn btn-link" data-toggle="modal" data-target="#info_modal" title="Ayuda"><i class="text-info fa fa-info-circle" aria-hidden="true"></i></button>
+                </div>
+                <div class="card-body align-items-center d-flex justify-content-center">
+                  <div class="input-file-container">
+                        {{ecg}}
+                        <label tabindex="0" for="my-file" class="input-file-trigger">Sube tu ECG</label>
+                  </div>
+                  <br>
+                    <a class="btn btn-danger btn-sm" onclick="bandera_clean()">
+                      <i class="fa fa-trash" aria-hidden="true">
+                      </i>
+                    </a>
+                </div>
+                <div class="card-footer text-right">
+                    <p class="file-return"></p>
+                    <a href="{% url 'main' %}"class="btn btn-primary">Regresar</a>
+                    <button type="submit" class="btn btn-success">Predecir</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="info_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tarjeta informativa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Sigue los siguientes pasos:
+        <ul>
+            <li>Debes de subir por lo menos la imagen de un ECG o el historial médico.</li>
+            <li>Para una mejor clasificación, proporciona la mayor información que puedas del formulario del historial médico.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="wait_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Pensando</h5>
+      </div>
+      <div class="modal-body">
+            Se está procesando su información, por favor, no cierre ésta ventana hasta que Sara tenga una predicción.
+        <center>
+            {% include "includes/cargando.html" %}
+        </center>
+      </div>
+      <div class="modal-footer">
+        No cierres está ventana.
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+        notification()
+    </script>
+    <script>
+        var bandera = 0;
+        var fileInput  = document.querySelector( ".input-file" );
+        document.querySelector("html").classList.add('js');
+        var button     = document.querySelector( ".input-file-trigger" );
+        var the_return = document.querySelector(".file-return");
+
+        button.addEventListener( "keydown", function( event ) {
+            if ( event.keyCode == 13 || event.keyCode == 32 ) {
+                fileInput.focus();
+            }
+        });
+        
+        button.addEventListener( "click", function( event ) {
+          fileInput.focus();
+          return false;
+        });
+
+        fileInput.addEventListener( "change", function( event ) {
+            extension = this.value.split('.').pop()
+            
+            if(extension == "jpeg" || extension == "jpg"){
+              bandera = 0;
+              the_return.innerHTML = this.value;
+
+            }
+            else{
+
+                bandera = 1;
+                the_return.innerHTML = "Extensión no permitida"
+            }
+        });
+        
+        $('#form_data').submit(function(ev) { // catch the form's submit event
+            if(bandera == 1){
+                toastr.warning("No puede subir un archivo con extensión diferente a jpg o jpeg.");
+                return;
+            }else{
+                //var data = new FormData();
+                ev.preventDefault();
+
+                var data = new FormData()
+                //console.info(fileInput.files[0])
+                data.append('ecg',fileInput.files[0],fileInput.files[0].name);
+              
+                for (var key of data.entries()) {
+                    console.log(key[0] + ', ' + key[1]);
+                }
+                //data.append("ecg",fileInput.files[0]);
+                
+                $('#wait_modal').modal({backdrop: 'static', keyboard: false,show:true})
+                
+                $.ajax({ // create an AJAX call...
+                  headers: { "X-CSRFToken": '{{csrf_token}}' },
+                  data: data, // get the form data
+                  type: "POST", // GET or POST
+                  processData: false,
+                  contentType: false,
+                  success: function(response) { // on success..
+                    
+                    document.location.href = "{% url 'show_data' %}";
+                  }
+                });
+            }
+        });
+        function bandera_clean(){
+            bandera = 0;
+            the_return = document.querySelector(".file-return");
+            the_return.innerHTML = null;
+        }
+    </script>
+{% endblock scripts %}
+
+

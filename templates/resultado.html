@@ -1,0 +1,153 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+Arritmias
+{% endblock title %}
+
+{% block content %}
+    <div class="card card-padding card-s-padding card-background-transparent ">
+        <div class="card-body">
+            <div class="row card-padding-content">
+                <div class="col-4">
+                    <div class="row">
+                        <h2 class="pl-4">Predicción</h2>
+                    </div>
+                    <br>
+                    <div class="row">
+                        {% include "includes/heart.html" %}
+                    </div>
+                    <div id="id_score">
+                        <div class="row pt-4 pl-4">
+                            <h6>SARA:</h6> ¿Están bien estos resultados, te sirvieron?
+                        </div>
+                        <div class="row pt-4 pl-5">
+                            <div class="row">
+                                <div class="btn-group btn-group-toggle">
+                                    <label class="btn btn-success">Si</label>
+                                    <input type="checkbox" name="ok_result" id="id_ok_result" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt-4 pl-5">
+                            <div class="row">
+                                <div class="btn-group btn-group-toggle">
+                                    <label class="btn btn-success" for="opinion">
+                                        <i class="fa fa-comments" aria-hidden="true"></i>
+                                    </label>
+                                    <input type="text" name="comment" id="id_comment" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt-4 pl-5">
+                            <div class="row">
+                                <div class="btn-group btn-group-toggle">
+                                    <button class="btn btn-success" onclick=comments()>Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                    <div class="row pt-4 pl-5">
+                        <div class="row">
+                            <div class="btn-group btn-group-toggle">
+                                <a href="{% url 'main' %}" class="btn btn-info">Salir</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <h2>Sara encontró los siguientes resultados:</h2>
+                    </div>
+                    <div class="row pt-4">
+                        {% if type == 1 %}
+                        {% for key, values in predict.items %}
+                        <div class="col">
+                            <div class="card border-info mb-3" style="max-width: 18rem;">
+                                <div class="card-header  bg-info">Anomalía</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{values}}%</h5>
+                                    <p class="card-text">
+                                        {% if values < "55" %}
+                                            Poco probable que sea:
+                                        {% elif values >= "55" and values < "80" %}
+                                            Muy probable que sea:
+                                        {% else %}
+                                            Seguramente está mal que sea:
+                                        {% endif %}
+                                        {{key}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col">
+                            <div class="card border-info mb-3" style="max-width: 18rem;">
+                                <div class="card-header  bg-info">Anomalía</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Predicción</h5>
+                                    <p class="card-text">
+                                        Sofía determinó que su ECG puede presentar: {{predict}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    notification()
+</script>
+   <script>
+        var bandera = 0;
+        $(document).ready(function() {
+            $('#form_data').submit(function() { // catch the form's submit event
+                if(bandera == 1){
+                    toastr.warning("No puede subir un archivo con extensión diferente a jpg.");
+                    return;
+                }else{
+                    $('#wait_modal').modal({backdrop: 'static', keyboard: false,show:true})
+                    console.log("enviando")
+                    $.ajax({ // create an AJAX call...
+                        headers: { "X-CSRFToken": '{{csrf_token}}' },
+                        data: $(this).serialize(), // get the form data
+                        type: "POST", // GET or POST
+                        success: function(response) { // on success..
+                            document.location.href = "{% url 'show_data' %}";
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        function comments(){
+
+            var data = new FormData();
+            data.append('ok_result',$("#id_ok_result").val());
+            data.append('comment',$("#id_comment").val());
+
+            $.ajax({
+                headers: { "X-CSRFToken": '{{csrf_token}}' },
+                url: "{% url 'comments' %}",
+                type: "POST",
+                dataType: 'json',
+                data:data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    $("#id_score").hide()
+                    toastr.success("Gracias por tus comentarios.");
+                },
+        });
+        }
+    </script>
+{% endblock scripts %}

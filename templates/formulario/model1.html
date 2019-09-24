@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.QRSA_v5.label}}:</label><button type="button" class="btn btn-link" data-toggle="modal" data-target="#info_qrsa_v5" title="Ayuda"><i class="text-info fa fa-info-circle" aria-hidden="true"></i></button>
+        {{model1.QRSA_v5}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.QRSTA_v5.label}}:</label><button type="button" class="btn btn-link" data-toggle="modal" data-target="#info_qrsta_v5" title="Ayuda"><i class="text-info fa fa-info-circle" aria-hidden="true"></i></button>
+        {{model1.QRSTA_v5}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.T_v5.label}}:</label>
+        {{model1.T_v5}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.T_DI.label}}:</label>
+        {{model1.T_DI}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.P.label}}:</label>
+        {{model1.P}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.S_v3.label}}:</label>
+        {{model1.S_v3}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.Heart_rate.label}}:</label>
+        {{model1.Heart_rate}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.QRS_duration.label}}:</label>
+        {{model1.QRS_duration}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.Number_of_intrinsic_deflections_linear_v1.label}}:</label>
+        {{model1.Number_of_intrinsic_deflections_linear_v1}}
+    </div>
+    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <label>{{model1.R_wave_avr.label}}:</label>
+        {{model1.R_wave_avr}}
+    </div>
+</div>
+
+
+<div class="modal fade" id="info_qrsa_v5" tabindex="-1" role="dialog" aria-labelledby="info_qrsa_v5" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tarjeta informativa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Sigue los siguientes pasos:
+        <p>
+        \[ \frac{\sum_{s=0}^{n}(A_{s})}{10} \]
+        </p>
+        <p>
+        Donde:
+        <ol>
+            <li>
+                n: Es númro de segmentos de la onda.
+            </li>
+            <li>
+                A<sub>s</sub>: Es el área del segmento. \[ A_{s} = \frac{altura_{s}*ancho_{s}}{2} \]
+            </li>
+        </ol>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="info_qrsta_v5" tabindex="-1" role="dialog" aria-labelledby="info_qrsta_v5" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tarjeta informativa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Sigue los siguientes pasos:
+        <p>
+        \[ QRSTA = QRSA + 0.5 * A_T * 0.1 * ALT_T \]
+        </p>
+        <p>
+        Donde:
+        <ol>
+            <li>
+                A_T: Es el ancho de la onda T wave
+            </li>
+            <li>
+                ALT_T: Es el ancho de la onda T wave
+            </li>
+        </ol>
+        Si T es difasíca entonces se tiene que considerar el mas grande de los segmentos.
+        
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>

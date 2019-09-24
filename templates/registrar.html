@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+Arritmias
+{% endblock title %}
+
+{% block content %}
+    <div class="card card-padding card-s-padding card-background-transparent ">
+        <div class="card-body">
+            <div class="row card-padding-content">
+                <div class="col">
+                    <h2>Registrarse</h2>
+                    <br>
+                    <form action="{% url 'registrar' %}" method="POST">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{user.first_name.label}}(s):</label>
+                                {{user.first_name}}
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{user.last_name.label}}(s):</label>
+                                {{user.last_name}}
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{user.password1.label}}:</label>
+                                {{user.password1}}
+                            </div>
+                            
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{user.password2.label}}:</label>
+                                {{user.password2}}
+                            </div>
+                            
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{user.username.label}}:</label>
+                                {{user.username}}
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{registrar.rol.label}}:</label>
+                                {{registrar.rol}}
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <label>{{registrar.edad.label}}:</label>
+                                {{registrar.edad}}
+                            </div>
+
+                            <div class="form-group col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <br><br>
+                                <center>
+                                    <button type="submit" class="btn btn-info btn-sm">Enviar</button>
+    
+                                    <a href="{% url 'main' %}" class="btn btn-info btn-sm">Regresar</a>
+                                </center>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4">
+                    {% include "includes/arritmia.html" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    notification()
+</script>
+{% endblock scripts %}

@@ -1,0 +1,52 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+Arritmias
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}">
+{% endblock css %}
+
+{% block content %}
+  <div class="card card-padding mt-5 card-background-transparent">
+    <div class="card-body">
+        <h3 class="pt-1 text-center">Sistema para la predicción y clasificación de arritmias cardíacas</h3>
+      <br>
+      <div class="align-middle">
+        <div class="card-columns mt-3">
+            <div class="card card-1-f">
+              <img class="card-img-top" src="{% static 'img/cnn.svg'%}">
+              <div class='card-body'>
+                <p>Clasificación con una electrocardiograma con una red neuronal convolucional.</p>
+              </div>
+              <div class="card-footer">
+                <a href="{% url 'cnn' %}" class="btn btn-sm btn-primary">Ir</a>
+              </div>
+            </div>
+            <div class="card card-1-f">
+              <img class="card-img-top" src="{% static 'img/rf.svg'%}">
+              <div class='card-body'>
+                <p>Clasificación con datos de un ECG con Random forest.</p>
+              </div>
+
+              <div class="card-footer">
+                <a href="{% url 'rf' %}" class="btn btn-sm btn-primary">Ir</a>
+              </div>
+            </div>
+            <div class="">
+              <div class='card-body'>
+                {% include "includes/arritmia.html" %}
+              </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    notification()
+</script>
+{% endblock scripts %}

@@ -1,0 +1,70 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/backgrounds.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/lines.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/p_m.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-grid.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap-reboot.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'toastr-master/build/toastr.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+        <script src="{% static 'toastr-master/build/toastr.min.js' %}"></script>
+        <script src="{% static 'toastr-master/toastr.js' %}"></script>
+        
+        <script>
+        function notification(){
+          {% if messages %}
+            {% for message in messages%}
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                toastr.error('{{message}}');
+              {% else %}
+                toastr.success('{{message}}');
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        }
+        </script>
+
+        {% block css %}
+
+        {% endblock css %}
+        
+        {% block js %}
+
+        {% endblock js %}
+    </head>
+    <body class="main-background">
+
+
+            <nav class="navbar nav-background-left justify-content-between nav-background">
+
+                <a class="navbar-brand"><img height="42" src="{% static 'img/logo/bitmap.png'%}"></a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                {% block login_block %}
+
+                {% endblock login_block %}
+
+            </nav>
+
+        <div class="container">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+
+        {% block scripts %}
+
+        {% endblock scripts %}
+
+    </body>
+</html>
