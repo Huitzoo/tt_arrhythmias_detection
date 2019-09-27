@@ -12,7 +12,7 @@ SECRET_KEY = 'dii7a&k5n8=r9g1mcsy@o)g+b!8ztnekes+xkfvw@)=)(*j&v3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','192.168.1.77','192.168.1.81','https://ttarritmias.appspot.com/','ttarritmias.appspot.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','192.168.1.77','192.168.1.81','ttarritmias.appspot.com','tt-env-2.5fmaerhxiq.us-west-2.elasticbeanstalk.com']
 
 
 # Application definition
@@ -70,41 +70,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# [START db_setup]
-"""
-if os.getenv('GAE_APPLICATION', None):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'HOST': '/cloudsql/ttarritmias:us-central1:arritmias-sql',
-            'USER': 'postgres',
-            'PASSWORD': '#ESCOM2019',
-            'NAME': 'tt',
-        }
-    }
-else:
-    # Running locally so connect to either a local MySQL instance or connect to
-    # Cloud SQL via the proxy. To start the proxy via command line:
-    #
-    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
-    #
-    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'HOST': 'localhost',
-            'PORT':'3306',
-            'USER': 'postgres',
-            'PASSWORD': '#ESCOM2019',
-            'NAME': 'tt',
-        }
-    }
-# [END db_setup]
-"""
-
 
 
 # Password validation

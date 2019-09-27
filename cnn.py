@@ -25,12 +25,12 @@ model.save_weights('weights_cnn.h5')
 """
 import cv2
 
-json_file = open('model.json', 'r')
+json_file = open('models/model.json', 'r')
 loaded_model_json = json_file.read()
 
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
-loaded_model.load_weights('weights_cnn.h5')
+loaded_model.load_weights('models/weights_cnn.h5')
 
 file = cv2.imread("f.jpeg")
 

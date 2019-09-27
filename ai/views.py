@@ -2,28 +2,16 @@ from django.shortcuts import render,redirect
 from django.views import View
 from . import forms
 import json
-import joblib
 from django.http import JsonResponse
 import numpy as np
 import ast
-import os
-import ast
 import requests
 import cv2
-from keras.models import model_from_json
 import pymongo
+import base64
 from django.conf import settings 
-from PIL import Image
-
 
 class CNN(View):
-    #model = load_model('./models/models_ECGModel.hdf5')
-    model_file = open('./models/model.json', 'r')
-    model = model_file.read()
-    model_file.close()
-    model = model_from_json(model)
-    model.load_weights('./models/weights_cnn.h5')
-    model._make_predict_function()          # Necessary
 
     def post(self,request):
 
@@ -41,41 +29,34 @@ class CNN(View):
         return render(request,"cnn.html",context)
 
     def model_predict(self,ecg_file):
+    
         
         decoded = cv2.imdecode(np.frombuffer(ecg_file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
+        
+        cv2.imwrite("a.jpeg",decoded)
+
         kernel = np.ones((4,4),np.uint8)
+
         
         decoded = cv2.erode(decoded,kernel,iterations = 1)
         decoded = cv2.resize(decoded, (128, 128), interpolation = cv2.INTER_LANCZOS4)
         decoded = cv2.cvtColor(decoded,cv2.COLOR_GRAY2RGB)
+        decoded = decoded.reshape((1, 128, 128, 3))
         
-        pred = self.model.predict(decoded.reshape((1, 128, 128, 3)))    
-        pred_class = pred.argmax(axis=-1)
-
-        """
         data =json.dumps({
                 "data":{
-                    "cnn":decoded.tolist()
+                    "cnn":decoded.tolist(),
+                    "shape":decoded.shape
                 }
             }
         )
-        
+
         result = requests.post(
-            'https://1zwso47y6c.execute-api.us-west-2.amazonaws.com/TT',
+            'https://wnyx0j0xr2.execute-api.us-west-2.amazonaws.com/cnn',
             data=data
         )
-        
-        context = ast.literal_eval(result.text)
-        """
-        
-        return {
-            "type":2,
-            "status_code":200,
-            "headers":{},
-            "payload":{
-                "predict":str(pred_class[0])
-            },
-        }    
+
+        return ast.literal_eval(result.text)
 
 class RF(View):
     def post(self,request):
@@ -149,7 +130,8 @@ class ShowData(View):
             del predict[predict.index(second)]
     
         elif data["type"] == 2:
-            anomalies = self.cnn_anomaly[int(data["payload"]["predict"])]
+            pred_class = np.asarray(data["payload"]["predictions"]).argmax(axis=-1)
+            anomalies = self.cnn_anomaly[int(pred_class[0])]
 
         context = {
             "predict":anomalies,
