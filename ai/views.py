@@ -130,7 +130,7 @@ class ShowData(View):
 
     def get(self,request):
         data = ast.literal_eval(request.COOKIES.get('data'))
-
+        print(data)
         if data["type"] == 1:
             anomalies = {}
             predict = data["payload"]["predict"]

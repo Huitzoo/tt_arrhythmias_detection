@@ -130,10 +130,7 @@ Arritmias
             data:data,
             contentType: false,
             processData: false,
-            success: function (response) {
-                console.log(response)
-                console.log(typeof(response))
-                
+            success: function (response) { 
                 if(response.status_code != 200){
                     toastr.error(response.payload.msg);
                     return
