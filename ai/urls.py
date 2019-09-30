@@ -27,5 +27,4 @@ urlpatterns = [
         view= views.comments,
         name='comments',
     ),
-
 ]

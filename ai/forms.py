@@ -486,12 +486,11 @@ class RFDataModelSecondForm(forms.ModelForm):
         
     def values(self,data):
         data = list(dict(data).values())        
-        print(data)
+        
         for i in range(len(data)):
             self.data_values.append(float(data[i][0]))
         
         #self.data_values.append(11)
-        print(self.data_values)
 
         self.data_values =json.dumps({
                 "data":{

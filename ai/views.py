@@ -7,10 +7,23 @@ import numpy as np
 import ast
 import requests
 import cv2
-import pymongo
-import base64
-from django.conf import settings 
+import logging
+    
+logger = logging.getLogger()
 
+logger.setLevel(logging.INFO)
+
+def message(status_code,data,msg):
+    
+    return JsonResponse({
+        "status_code":200,
+        "headers":{},
+        "payload":{
+            "data":data,
+            "msg":msg
+        },
+    })
+    
 class CNN(View):
 
     def post(self,request):
@@ -90,8 +103,7 @@ class RF(View):
     
 class ProcessData(View):
     def post(self,request):
-        print(request)
-
+        pass
     def get(self,request):
         return render(request,"espera.html")
 
@@ -141,19 +153,17 @@ class ShowData(View):
 
 
 def comments(request):
-    mongo = settings.DB_MONGO.arrhytmias.comments
-    
-    content = {
-        "ok":str(request.POST.get("ok_result")),
-        "comment":request.POST.get("comment")
-    }
+    data = json.dumps({
+        "data":{
+                "ok_result":str(request.POST.get("ok_result")),
+                "comment":request.POST.get("comment")
+            }
+        }
+    )
 
-    mongo.insert_one(content)
-    
-    return JsonResponse({
-            "status_code":200,
-            "headers":{},
-            "payload":{
-                "data":""
-            },
-    })
+    result = requests.post(
+        'https://p7j18vju8i.execute-api.us-west-2.amazonaws.com/mongo_api',
+        data=data
+    )
+
+    return JsonResponse(ast.literal_eval(result.text))

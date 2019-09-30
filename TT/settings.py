@@ -115,9 +115,6 @@ USE_TZ = True
 
 
 
-import pymongo
-DB_MONGO = pymongo.MongoClient("mongodb+srv://huitzoo:halo1603@ttarritmias-5bevl.mongodb.net/TTarritmias?retryWrites=true&w=majority")
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
