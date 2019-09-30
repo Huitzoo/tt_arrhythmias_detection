@@ -111,7 +111,10 @@ Arritmias
 
         $(document).ready(function() {
             $('#form_data').submit(function() { // catch the form's submit event
-
+              if($(this).val() === "")
+                toastr.warning("Favor de llenar la información completa");
+                return
+            
               $('#wait_modal').modal({backdrop: 'static', keyboard: false,show:true})
               
               $.ajax({ // create an AJAX call...

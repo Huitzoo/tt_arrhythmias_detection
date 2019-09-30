@@ -117,13 +117,12 @@ Arritmias
         });
         
         $('#form_data').submit(function(ev) { // catch the form's submit event
+            ev.preventDefault();
             if(bandera == 1){
                 toastr.warning("No puede subir un archivo con extensión diferente a jpg o jpeg.");
                 return;
             }else{
                 //var data = new FormData();
-                ev.preventDefault();
-
                 var data = new FormData()
                 //console.info(fileInput.files[0])
                 data.append('ecg',fileInput.files[0],fileInput.files[0].name);
@@ -148,6 +147,7 @@ Arritmias
                 });
             }
         });
+
         function bandera_clean(){
             bandera = 0;
             the_return = document.querySelector(".file-return");
