@@ -5,114 +5,123 @@ Arritmias
 {% endblock title %}
 
 {% block content %}
-    <div class="card card-padding card-s-padding card-background-transparent ">
-        <div class="card-body">
-            <div class="row card-padding-content">
-                <div class="col-4">
-                    <div class="row">
-                        <h2 class="pl-4">Predicción</h2>
-                    </div>
-                    <br>
-                    <div class="row">
-                        {% include "includes/heart.html" %}
-                    </div>
-                    <div id="id_score">
-                        <div class="row pt-4 pl-4">
-                            <h6>SARA:</h6> ¿Están bien estos resultados, te sirvieron?
-                        </div>
-                        <div class="row pt-4 pl-5">
-                            <div class="row">
-                                <div class="btn-group btn-group-toggle">
-                                    <div class="form-check">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Si</label>
+<div class="space-area" id="welcome">
+
+</div>
+<section class="section home-feature">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- ***** Features Small Item Start ***** -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                        <div class="features-small-item">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <h2>Sara encontró los siguientes resultados:</h2>
+                                {% if type == 1 %}
+                                {% for key, values in predict.items %}
+                                <div class="col">
+                                    <div class="features-small-item">
+
+                                        <div class="card-header  bg-info">Anomalía</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{values}}%</h5>
+                                            <p class="card-text">
+                                                {% if values < "50" %}
+                                                    Poco probable que sea:
+                                                {% elif values >= "50" and values < "75" %}
+                                                    Muy probable que sea:
+                                                {% else %}
+                                                    Seguramente está mal que sea:
+                                                {% endif %}
+                                                {{key}}
+                                            </p>
                                         </div>
                                     </div>
-                                    
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row pt-4 pl-5">
-                            <div class="row">
-                                <div class="btn-group btn-group-toggle">
-                                    <label class="btn btn-success" for="opinion">
-                                        <i class="fa fa-comments" aria-hidden="true"></i>
-                                    </label>
-                                    <textarea class="form-control" id="id_comment" rows="2",colums="3" autocomplete="off"></textarea>  
+                                {% endfor %}
+                                {% else %}
+                                <div class="col">
+                                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                                        <div class="card-header  bg-info">Anomalía</div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Predicción</h5>
+                                            <p class="card-text">
+                                                Sofía determinó que su ECG puede presentar: {{predict}}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row pt-4 pl-5">
-                            <div class="row">
-                                <div class="btn-group btn-group-toggle">
-                                    <button id="comment_btn" class="btn btn-success" onclick=comments()>Enviar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                    
-                </div>
-                <div class="col">
-                    <div class="row">
-                        <h2>Sara encontró los siguientes resultados:</h2>
-                    </div>
-                    <div class="row pt-4">
-                        {% if type == 1 %}
-                        {% for key, values in predict.items %}
-                        <div class="col">
-                            <div class="card border-info mb-3" style="max-width: 18rem;">
-                                <div class="card-header  bg-info">Anomalía</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{values}}%</h5>
-                                    <p class="card-text">
-                                        {% if values < "55" %}
-                                            Poco probable que sea:
-                                        {% elif values >= "55" and values < "80" %}
-                                            Muy probable que sea:
-                                        {% else %}
-                                            Seguramente está mal que sea:
-                                        {% endif %}
-                                        {{key}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        {% else %}
-                        <div class="col">
-                            <div class="card border-info mb-3" style="max-width: 18rem;">
-                                <div class="card-header  bg-info">Anomalía</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Predicción</h5>
-                                    <p class="card-text">
-                                        Sofía determinó que su ECG puede presentar: {{predict}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
+                                {% endif %}
 
-                    <div class="row pt-4 pl-5">
-                        <div class="row">
-                            <div class="btn-group btn-group-toggle">
-                                <a href="{% url 'main' %}" class="btn btn-info">Salir</a>
+                                <div class="row pt-4 pl-5">
+                                    <div class="row">
+                                        <div class="btn-group btn-group-toggle">
+                                            <a href="{% url 'main' %}" class="btn btn-info">Salir</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <h2 class="pl-4">Predicción</h2>
+                                <br>
+                                {% include "includes/heart.html" %}
+                                <div id="id_score">
+                                    <h6>SARA:</h6> ¿Están bien estos resultados, te sirvieron?
+                                
+                                    <div class="row pt-4 pl-5">
+                                        <div class="row">
+                                            <div class="btn-group btn-group-toggle">
+                                                <div class="form-check">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                        <label class="custom-control-label" for="customCheck1">Si</label>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-4 pl-5">
+                                        <div class="row">
+                                            <div class="btn-group btn-group-toggle">
+                                                <label class="btn btn-success" for="opinion">
+                                                    <i class="fa fa-comments" aria-hidden="true"></i>
+                                                </label>
+                                                <textarea class="form-control" id="id_comment" rows="3" cols="50" autocomplete="off"></textarea>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-4 pl-5">
+                                        <div class="row">
+                                            <div class="btn-group btn-group-toggle">
+                                                <button id="comment_btn" class="btn btn-success" onclick=comments()>Enviar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        </div>
                     </div>
-                    
                 </div>
-            
             </div>
         </div>
     </div>
+</section>
+
 {% endblock content %}
 
+
+{% block js %}
+
+{% endblock js %}
+
 {% block scripts %}
-<script>
-    notification()
-</script>
+
 <script>
     function comments(){
 

@@ -198,6 +198,8 @@ class RFDataModelSecond(models.Model):
    T_v5 = models.FloatField(blank=True,null=True)
    Numero_de_deflexiones_intrinsecas_en_v1 = models.FloatField(blank=True,null=True)
    Number_of_intrinsic_deflections_linear_v1 = models.FloatField(blank=True,null=True)
+   age = models.FloatField(blank=True,null=True)
+   S_avl = models.FloatField(blank=True,null=True)
 
 class Score(models.Model):
    comment = models.CharField(max_length=10,blank=True,null=True)

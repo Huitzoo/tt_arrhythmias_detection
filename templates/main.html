@@ -1,52 +1,69 @@
 {% extends "base/base.html" %}
 {% load static %}
+
 {% block title %}
 Arritmias
 {% endblock title %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/cards.css' %}">
-{% endblock css %}
-
 {% block content %}
-  <div class="card card-padding mt-5 card-background-transparent">
-    <div class="card-body">
-        <h3 class="pt-1 text-center">Sistema para la predicción y clasificación de arritmias cardíacas</h3>
-      <br>
-      <div class="align-middle">
-        <div class="card-columns mt-3">
-            <div class="card card-1-f">
-              <img class="card-img-top" src="{% static 'img/cnn.svg'%}">
-              <div class='card-body'>
-                <p>Clasificación con una electrocardiograma con una red neuronal convolucional.</p>
-              </div>
-              <div class="card-footer">
-                <a href="{% url 'cnn' %}" class="btn btn-sm btn-primary">Ir</a>
-              </div>
-            </div>
-            <div class="card card-1-f">
-              <img class="card-img-top" src="{% static 'img/rf.svg'%}">
-              <div class='card-body'>
-                <p>Clasificación con datos de un ECG con Random forest.</p>
-              </div>
 
-              <div class="card-footer">
-                <a href="{% url 'rf' %}" class="btn btn-sm btn-primary">Ir</a>
-              </div>
-            </div>
-            <div class="">
-              <div class='card-body'>
-                {% include "includes/arritmia.html" %}
-              </div>
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+                        <h1>Clasificación de <strong>arritmias</strong><br>cardíacas</h1>
+                        {% include "includes/arritmia.html" %}
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-  </div>
-</div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Features Small Start ***** -->
+    <section class="section home-feature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'img/cnn.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title">CNN</h5>
+                                <p>Clasificación con el modelo de CNN e imagenes</p>
+
+                                <a href="{% url 'cnn' %}" class="main-button">Ir</a>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+
+                        <!-- ***** Features Small Item Start ***** -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+                            <div class="features-small-item">
+                                <div class="icon">
+                                    <i><img src="{% static 'img/rf.png'%}" alt=""></i>
+                                </div>
+                                <h5 class="features-title">Random forest</h5>
+                                <p>Clasificación con el modelo de random forest</p>
+                                <a href="{% url 'rf' %}" class="main-button">Ir</a>
+                            </div>
+                        </div>
+                        <!-- ***** Features Small Item End ***** -->
+                        <!-- ***** Features Small Item Start ***** -->
+                        
+                        <!-- ***** Features Small Item End ***** -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock content %}
 
-{% block scripts %}
-<script>
-    notification()
-</script>
-{% endblock scripts %}

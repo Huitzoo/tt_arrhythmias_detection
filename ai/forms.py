@@ -436,15 +436,17 @@ class RFDataModelFirstForm(forms.ModelForm):
             }
             self.fields["QRSA_v5"].label = "QRSA derivación V5"
             self.fields["QRSTA_v5"].label = "QRSTA derivación v5"
-            self.fields["T_v5"].label = "El producto de la amplitud de la onda T en la derivación v5 con 0.1mv"
-            self.fields["T_DI"].label = "El producto de la amplitud de la onda T en la derivación DI con 0.1mv"
+            self.fields["T_v5"].label = "El producto de las amplitudes de la onda T en la derivación v5 con 0.1mv"
+            self.fields["T_DI"].label = "El producto de las amplitudes de la onda T en la derivación DI con 0.1mv"
             self.fields["P"].label = "Angulo del vector en el plano frontal de la onda P"
-            self.fields["S_v3"].label = "El producto de la amplitud de la onda S en la derivación v3 con 0.1mv"
+            self.fields["S_v3"].label = "El producto de las amplitudes de la onda S en la derivación v3 con 0.1mv"
             self.fields["Heart_rate"].label = "Ritmo cardíaco (lpm)"
             self.fields["QRS_duration"].label = "Promedio de la duración del segmento QRS en milisegundos"
             self.fields["Number_of_intrinsic_deflections_linear_v1"].label = "Número de deflexiones intrínsecas lineales en la derivación v1"
             self.fields["R_wave_avr"].label = "Tamaño promedio de la onda R en la derivación avr"
-    
+            self.fields["age"].label = "Edad"
+            self.fields["S_avl"].label = "El producto de la amplitudes de la onda S en la derivación avl con 0.1mv"
+
     def values(self,data):
         data = list(dict(data).values())        
         
@@ -471,18 +473,21 @@ class RFDataModelSecondForm(forms.ModelForm):
         for field in self.fields:
             self.fields[field].widget.attrs = {
                 'class': 'form-control',
-                'step':'0.01'
+                'step':'0.01',
+                'required':'True'
             }
-
             self.fields["Q_v3"].label = "El producto del promedio de las amplitudes de la onda Q en la derivación v3 con 0.1mv"
             self.fields["Q_DII"].label = "El producto del promedio de las amplitudes de la onda Q en la derivación DII con 0.1mv"
             self.fields["R_prima_v2"].label = "El producto del promedio de las amplitudes de la onda R' en la derivación v2 con 0.1mv"
             self.fields["R_prima_R_v1"].label = "Promedio del tamaño de las Onda R', (pico pequeño justo después de R) en v1"
             self.fields["T_v5"].label = "El producto del promedio las amplitudes de la onda T en la derivación v5 con 0.1mv"
             self.fields["T_v4"].label = "El producto del promedio las amplitudes de la onda T en la derivación v4 con 0.1mv" 
-            self.fields["Heart_rate"].label = "Ritmo cardíaco (lpm)"
+            self.fields["S_avl"].label = "El producto de las amplitudes de la onda S en la derivación avl con 0.1mv"
             self.fields["QRS_duration"].label = "Promedio de la duración del segmento QRS en milisegundos"
+            self.fields["Heart_rate"].label = "Ritmo cardíaco (lpm)"
             self.fields["Numero_de_deflexiones_intrinsecas_en_v1"].label = "Número de deflexiones intrínsecas en v1"
+            self.fields["age"].label = "Edad"
+
         
     def values(self,data):
         data = list(dict(data).values())        
