@@ -1,0 +1,156 @@
+\begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_0.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_63.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_24.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_54.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_91.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_75.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_48.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_21.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_93.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_22.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_28.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_100.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_35.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_103.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_65.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/t.txt}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_112.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_119.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_87.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_38.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_14.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_71.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_117.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_74.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_62.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_115.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_57.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_9.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_78.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_51.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    \begin{figure}[H]
+            \centering
+            \includegraphics[width=11.5cm]{ReporteTT/capitulos/apendice/jupyter/output_13_47.png}
+            \caption{Gráfica de comparación entre arritmias cardiacas.}
+        \end{figure}
+    

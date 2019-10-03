@@ -45,11 +45,8 @@ class CNN(View):
     
         
         decoded = cv2.imdecode(np.frombuffer(ecg_file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
-        
-        cv2.imwrite("a.jpeg",decoded)
-
         kernel = np.ones((4,4),np.uint8)
-
+        
         
         decoded = cv2.erode(decoded,kernel,iterations = 1)
         decoded = cv2.resize(decoded, (128, 128), interpolation = cv2.INTER_LANCZOS4)
@@ -63,6 +60,8 @@ class CNN(View):
                 }
             }
         )
+
+        del decoded
 
         result = requests.post(
             'https://wnyx0j0xr2.execute-api.us-west-2.amazonaws.com/cnn',
@@ -111,7 +110,7 @@ class ProcessData(View):
 class ShowData(View):
     rf_anomaly = {
         0:"Normal",
-        1:"Cambios isquémicos (enfermedad de la arteria coronaria)",
+        1:"Enfermedad de la arteria coronaria",
         2:"Infarto de miocardio anterior anterior",
         3:"Infarto de miocardio inferior",
         4:"Taquicardia sinusal",
