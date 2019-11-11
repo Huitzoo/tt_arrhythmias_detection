@@ -26,8 +26,9 @@ Arritmias
 
                                         <div class="card-header  bg-info">Anomalía</div>
                                         <div class="card-body">
-                                            <h5 class="card-title">{{values}}%</h5>
+                                            <h5 class="card-title"></h5>
                                             <p class="card-text">
+                                                <!--
                                                 {% if values < "50" %}
                                                     Poco probable que sea:
                                                 {% elif values >= "50" and values < "75" %}
@@ -35,6 +36,8 @@ Arritmias
                                                 {% else %}
                                                     Seguramente está mal que sea:
                                                 {% endif %}
+                                                -->
+                                                Con un {{values}}% de posibilidad, se determinó que puede ser: 
                                                 {{key}}
                                             </p>
                                         </div>

@@ -37,7 +37,6 @@ file = cv2.imread("f.jpeg")
 
 pred = loaded_model.predict(file.reshape((1, 128, 128, 3)))    
 pred_class = pred.argmax(axis=-1)
-print(pred_class)
 
 """
 signature = predict_signature_def(

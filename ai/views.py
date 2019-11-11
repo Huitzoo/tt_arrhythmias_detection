@@ -73,7 +73,7 @@ class CNN(View):
 class RF(View):
     def post(self,request):
         info = forms.RFDataModelSecondForm()
-        print(request.POST)
+       
         info.values(request.POST)
         
         data = self.random_forest(info.data_values)
@@ -115,7 +115,7 @@ class ShowData(View):
         3:"Infarto de miocardio inferior",
         4:"Taquicardia sinusal",
         5:"Bradicardia sinusal",
-        6:"Bloque de rama derecha"
+        6:"Bloqueo de rama derecha"
     }
     
     cnn_anomaly = {
@@ -130,12 +130,10 @@ class ShowData(View):
 
     def get(self,request):
         data = ast.literal_eval(request.COOKIES.get('data'))
-        print(data)
         if data["type"] == 1:
             anomalies = {}
             predict = data["payload"]["predict"]
             for i in range(2):
-                print(predict)
                 first = predict.index(max(predict))
                 anomalies[self.rf_anomaly[first]] = "{:.3f}".format(max(predict)*100)
                 predict[first] = -1
