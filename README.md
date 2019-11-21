@@ -32,7 +32,7 @@ https://tt-documentation-arritmias.s3-us-west-2.amazonaws.com/cnn/weights_cnn.h5
 
 Para correr el proyecto, si tienes experiencia ejecuta:
 ```
-pytho3 manage.py runserver
+python manage.py runserver
 ```
 Sino, da click en sara.sh para poder correr el proyecto
 
