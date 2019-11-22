@@ -8,13 +8,14 @@ import ast
 import requests
 import cv2
 import logging
-    
+from keras.models import model_from_json
+
 logger = logging.getLogger()
 
 logger.setLevel(logging.INFO)
 
 def message(status_code,data,msg):
-    
+
     return JsonResponse({
         "status_code":200,
         "headers":{},
@@ -23,7 +24,7 @@ def message(status_code,data,msg):
             "msg":msg
         },
     })
-    
+
 class CNN(View):
 
     def post(self,request):
@@ -31,7 +32,7 @@ class CNN(View):
         data = self.model_predict(request.FILES["ecg"])
         response = JsonResponse(data)
         response.set_cookie('data',data)
-        
+
         return response
 
     def get(self,request):
@@ -42,17 +43,24 @@ class CNN(View):
         return render(request,"cnn.html",context)
 
     def model_predict(self,ecg_file):
-    
-        
+
+
         decoded = cv2.imdecode(np.frombuffer(ecg_file.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
         kernel = np.ones((4,4),np.uint8)
-        
-        
+
+        print(decoded)
         decoded = cv2.erode(decoded,kernel,iterations = 1)
         decoded = cv2.resize(decoded, (128, 128), interpolation = cv2.INTER_LANCZOS4)
         decoded = cv2.cvtColor(decoded,cv2.COLOR_GRAY2RGB)
         decoded = decoded.reshape((1, 128, 128, 3))
-        
+
+        # Option 1: Load Weights + Architecture
+        with open('./keras_model/model.json', 'r') as f:
+            model = model_from_json(f.read())
+        model.load_weights('./keras_model/weights_cnn.h5')
+
+        result = model.predict(decoded)
+        """
         data =json.dumps({
                 "data":{
                     "cnn":decoded.tolist(),
@@ -61,23 +69,30 @@ class CNN(View):
             }
         )
 
-        del decoded
-
         result = requests.post(
             'https://wnyx0j0xr2.execute-api.us-west-2.amazonaws.com/cnn',
             data=data
         )
-
-        return ast.literal_eval(result.text)
-
+        """
+        del decoded
+        result = [list(result.astype(str)[0])]
+        print(result)
+        return {
+            "type":2,
+            "status_code":200,
+            "headers":{},
+            'payload':{
+                'predictions':result
+            }
+        }
 class RF(View):
     def post(self,request):
         info = forms.RFDataModelSecondForm()
-       
+
         info.values(request.POST)
-        
+
         data = self.random_forest(info.data_values)
-        
+
         response = JsonResponse(data)
         response.set_cookie('data',data)
 
@@ -89,7 +104,7 @@ class RF(View):
             "model1":forms.RFDataModelSecondForm
         }
         return render(request,"rf.html",context)
-     
+
     def random_forest(self,data):
 
         result = requests.post(
@@ -100,7 +115,7 @@ class RF(View):
         context = ast.literal_eval(result.text)
 
         return context
-    
+
 class ProcessData(View):
     def post(self,request):
         pass
@@ -117,7 +132,7 @@ class ShowData(View):
         5:"Bradicardia sinusal",
         6:"Bloqueo de rama derecha"
     }
-    
+
     cnn_anomaly = {
         1:"Normal",
         4:"Contracción ventricular prematura (PVC)",
@@ -130,6 +145,7 @@ class ShowData(View):
 
     def get(self,request):
         data = ast.literal_eval(request.COOKIES.get('data'))
+        print(data)
         if data["type"] == 1:
             anomalies = {}
             predict = data["payload"]["predict"]
@@ -139,7 +155,7 @@ class ShowData(View):
                 predict[first] = -1
             second = max(predict)
             del predict[predict.index(second)]
-    
+
         elif data["type"] == 2:
             pred_class = np.asarray(data["payload"]["predictions"]).argmax(axis=-1)
             anomalies = self.cnn_anomaly[int(pred_class[0])]

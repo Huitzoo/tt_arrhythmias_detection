@@ -8,6 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECRET_KEY = 'dii7a&k5n8=r9g1mcsy@o)g+b!8ztnekes+xkfvw@)=)(*j&v3'
 
 ALLOWED_HOSTS = ['localhost','127.0.0.1','192.168.1.77','192.168.1.90','ttarritmias.appspot.com','tt-env-2.5fmaerhxiq.us-west-2.elasticbeanstalk.com']
 
